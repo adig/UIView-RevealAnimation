@@ -52,7 +52,7 @@ static NSString * const kRAAnimationKey = @"RA_revealAnimation";
     CAAnimationGroup *group = [CAAnimationGroup animation];
     group.duration = duration;
     group.animations = @[animationX, animationY];
-    group.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    group.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     group.removedOnCompletion = NO;
     group.fillMode = kCAFillModeForwards;
     group.delegate = self;
@@ -65,9 +65,9 @@ static NSString * const kRAAnimationKey = @"RA_revealAnimation";
     maskLayer.bounds = self.bounds;
     CGPathRef path;
     if(maskType == RAMaskRectangle) {
-        path = CGPathCreateWithRect(self.frame, NULL);
+        path = CGPathCreateWithRect(self.bounds, NULL);
     } else {
-        path = CGPathCreateWithEllipseInRect(self.frame, NULL);
+        path = CGPathCreateWithEllipseInRect(self.bounds, NULL);
     }
     maskLayer.path = path;
     CGPathRelease(path);
